@@ -21,6 +21,9 @@ screenshots/
 # n8n workflow JSONs — contain inlined Supabase URL/secret after deploy
 n8n/*.json
 
+# Claude Code working notes — personal, not for the shared repo
+CLAUDE.md
+
 # OS / editor
 .DS_Store
 Thumbs.db
