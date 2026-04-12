@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --paper:    #FBF8F3;
+    --ink:      #1F1B16;
+    --muted:    #6F6A62;
+    --hairline: #E6DFD2;
+    --sunrise:  #E8933A;
+    --ember:    #C15A1A;
+    --dawn:     #F4B942;
+  }
+
+  html, body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "DM Sans", system-ui, sans-serif;
+    font-feature-settings: "ss01", "cv01";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--sunrise);
+    color: var(--paper);
+  }
+}
+
+@layer utilities {
+  .tabular { font-variant-numeric: tabular-nums lining-nums; }
+  .tracking-smallcap { letter-spacing: 0.14em; }
+  .hairline { border-color: var(--hairline); }
+
+  .grain::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.35;
+    z-index: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.12 0 0 0 0 0.10 0 0 0 0 0.08 0 0 0 0.12 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    mix-blend-mode: multiply;
+  }
+
+  .sunrise-rule {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--sunrise) 40%, var(--ember) 60%, transparent);
+  }
+
+  .number-display {
+    font-family: "Fraunces", serif;
+    font-optical-sizing: auto;
+    font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0;
+    font-variant-numeric: tabular-nums lining-nums;
+    letter-spacing: -0.025em;
+  }
+
+  .ink-link {
+    background-image: linear-gradient(var(--ink), var(--ink));
+    background-size: 100% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.3s ease;
+  }
+  .ink-link:hover {
+    background-size: 0% 1px;
+  }
+}

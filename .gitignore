@@ -1,0 +1,29 @@
+# Environments & secrets
+.env
+.env.local
+.env.*.local
+
+# Next.js
+.next/
+out/
+next-env.d.ts
+
+# Node
+node_modules/
+
+# Vercel
+.vercel/
+
+# Screenshots (local-only QA captures)
+screenshots/
+.playwright-mcp/
+
+# n8n workflow JSONs — contain inlined Supabase URL/secret after deploy
+n8n/*.json
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log
+.idea/
+.vscode/
