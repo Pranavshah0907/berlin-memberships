@@ -30,9 +30,9 @@ export default async function ChurnedPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Volume IV · Departures"
-        title="Farewell & Forthcoming."
-        subtitle="Members who have left the practice, and those whose subscriptions are scheduled to end."
+        eyebrow="Churn"
+        title="Canceled & scheduled."
+        subtitle="Members who have canceled and those whose subscriptions are scheduled to end."
       />
 
       <div className="px-12 py-10 space-y-16">

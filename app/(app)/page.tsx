@@ -24,9 +24,9 @@ export default async function Overview() {
   return (
     <>
       <PageHeader
-        eyebrow="Volume I · Overview"
-        title="Current State."
-        subtitle="A snapshot of the membership body, its recurring revenue, and the shape of income over time."
+        eyebrow="Overview"
+        title="At a glance."
+        subtitle="Active members, recurring revenue, and monthly income at a glance."
       />
 
       <section className="px-12 py-12">

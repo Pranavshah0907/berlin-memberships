@@ -9,9 +9,9 @@ export default async function MembersPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Volume II · Members"
-        title="The Register."
-        subtitle="Every subscriber of the Yoga Oase — active, scheduled, past due, and departed."
+        eyebrow="Members"
+        title="All members."
+        subtitle="Every Yoga Oase subscriber — active, past due, scheduled to cancel, or canceled."
       />
       <div className="px-12 py-10">
         <MembersTable members={members} />

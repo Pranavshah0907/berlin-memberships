@@ -11,9 +11,9 @@ export default async function PaymentsPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Volume III · Payments"
-        title="The Ledger."
-        subtitle="Every invoice, every amount, every outcome — filterable by period and state."
+        eyebrow="Payments"
+        title="All payments."
+        subtitle="Every invoice, filterable by date range and status."
       />
       <div className="px-12 py-10">
         <PaymentsView payments={payments} nameByCustomer={nameByCustomer} />

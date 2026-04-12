@@ -14,12 +14,12 @@ export default function LoginPage() {
         </div>
 
         <div className="relative">
-          <div className="text-[13px] tracking-smallcap uppercase text-muted mb-5">Volume I · MMXXVI</div>
+          <div className="text-[13px] tracking-smallcap uppercase text-muted mb-5">Volume 1 · 2026</div>
           <h1 className="font-display text-[60px] leading-[0.95] tracking-tight max-w-[520px]">
-            A quiet ledger for the <em>Yoga Oase</em> membership practice.
+            Yoga Oase <em>Memberships</em> Dashboard.
           </h1>
           <p className="mt-7 max-w-md text-[17px] leading-relaxed text-muted">
-            Members, payments, and the arc of subscription — kept in one calm place.
+            Track members, payments, and subscription activity — all in one place.
           </p>
         </div>
 
