@@ -37,10 +37,6 @@ export default function LoginPage() {
           </p>
 
           <LoginForm />
-
-          <div className="mt-10 text-[12px] tracking-smallcap uppercase text-muted">
-            Automated via LEAP
-          </div>
         </div>
       </section>
     </div>
