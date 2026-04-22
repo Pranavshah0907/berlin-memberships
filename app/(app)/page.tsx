@@ -46,20 +46,28 @@ export default async function Overview() {
           </div>
           <div className="col-span-12 2xl:col-span-4">
             <SectionTitle roman="III" title="Plan composition" />
-            <div className="space-y-6 mt-2">
+            <div className="border-t hairline mt-2">
               {planStats.map((p: any) => {
-                const total = Number(p.active) + Number(p.past_due) + Number(p.scheduled_to_cancel);
+                const active = Number(p.active);
+                const pastDue = Number(p.past_due);
+                const scheduled = Number(p.scheduled_to_cancel);
+                const total = active + pastDue + scheduled;
+                const flags: string[] = [];
+                if (pastDue > 0) flags.push(`${pastDue} past due`);
+                if (scheduled > 0) flags.push(`${scheduled} scheduled`);
                 return (
-                  <div key={p.plan}>
-                    <div className="flex items-baseline justify-between">
-                      <div className="font-display text-[26px] tracking-tight">{p.plan}</div>
-                      <div className="font-mono text-[13px] text-muted">{total} members · {fmtEur(p.plan_mrr)}/mo</div>
+                  <div key={p.plan} className="grid grid-cols-[1fr_auto_auto] items-baseline gap-x-8 gap-y-1 py-5 border-b hairline">
+                    <div className="font-display text-[24px] tracking-tight">{p.plan}</div>
+                    <div className="text-right">
+                      <span className="number-display text-[34px] leading-none tabular">{String(total).padStart(2, "0")}</span>
+                      <span className="ml-2 text-[11px] tracking-smallcap uppercase text-muted">{total === 1 ? "member" : "members"}</span>
                     </div>
-                    <div className="mt-2 flex h-1.5 hairline border">
-                      <div className="bg-ember" style={{ width: `${(Number(p.active)/Math.max(1,total))*100}%` }} />
-                      <div className="bg-sunrise" style={{ width: `${(Number(p.past_due)/Math.max(1,total))*100}%` }} />
-                      <div className="bg-dawn" style={{ width: `${(Number(p.scheduled_to_cancel)/Math.max(1,total))*100}%` }} />
-                    </div>
+                    <div className="font-mono text-[14px] text-muted text-right tabular">{fmtEur(p.plan_mrr)}<span className="text-muted">/mo</span></div>
+                    {flags.length > 0 && (
+                      <div className="col-span-3 text-[11px] tracking-smallcap uppercase text-ember">
+                        {flags.join(" · ")}
+                      </div>
+                    )}
                   </div>
                 );
               })}
