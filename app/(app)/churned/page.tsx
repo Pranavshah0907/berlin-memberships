@@ -35,7 +35,7 @@ export default async function ChurnedPage() {
         subtitle="Members who have canceled and those whose subscriptions are scheduled to end."
       />
 
-      <div className="px-12 py-10 space-y-16">
+      <div className="px-6 md:px-10 lg:px-12 py-8 md:py-10 space-y-16">
         <Section title="Scheduled to cancel" count={scheduled.length}>
           {scheduled.length === 0 ? (
             <EmptyRow text="No upcoming cancellations." />

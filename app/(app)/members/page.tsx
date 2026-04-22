@@ -13,7 +13,7 @@ export default async function MembersPage() {
         title="All members."
         subtitle="Every Yoga Oase subscriber — active, past due, scheduled to cancel, or canceled."
       />
-      <div className="px-12 py-10">
+      <div className="px-6 md:px-10 lg:px-12 py-8 md:py-10">
         <MembersTable members={members} />
       </div>
     </>

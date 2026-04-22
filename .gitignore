@@ -27,8 +27,12 @@ CLAUDE.md
 # OS / editor
 .DS_Store
 Thumbs.db
+desktop.ini
 *.log
 .idea/
 .vscode/
+
+# TypeScript incremental build artifact
+tsconfig.tsbuildinfo
 
 .vercel

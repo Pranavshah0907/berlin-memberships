@@ -22,6 +22,8 @@ export type Member = {
   canceled_at: string | null;
   city: string | null;
   country: string | null;
+  current_period_start: string | null;
+  current_period_end: string | null;
 };
 
 export type Payment = {
@@ -29,8 +31,8 @@ export type Payment = {
   customer_id: string | null;
   amount: number;
   currency: string;
-  status: "succeeded" | "failed" | "refunded";
-  payment_date: string;
+  status: "pending" | "succeeded" | "failed" | "refunded";
+  payment_date: string | null;
   period_start: string | null;
   period_end: string | null;
   refunded_amount: number;
@@ -47,7 +49,7 @@ export async function getOverview() {
 }
 
 export async function getMembers(): Promise<Member[]> {
-  const { data } = await supabase.from("members").select("*").order("start_date", { ascending: false });
+  const { data } = await supabase.from("v_members_with_period").select("*").order("start_date", { ascending: false });
   return (data ?? []) as Member[];
 }
 
@@ -62,7 +64,7 @@ export async function getPayments(): Promise<Payment[]> {
 
 export async function getChurned(): Promise<Member[]> {
   const { data } = await supabase
-    .from("members")
+    .from("v_members_with_period")
     .select("*")
     .in("status", ["canceled", "scheduled_to_cancel"])
     .order("canceled_at", { ascending: false, nullsFirst: false });

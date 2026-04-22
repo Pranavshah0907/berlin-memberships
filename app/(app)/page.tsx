@@ -29,22 +29,22 @@ export default async function Overview() {
         subtitle="Active members, recurring revenue, and monthly income at a glance."
       />
 
-      <section className="px-12 py-12">
-        <div className="grid grid-cols-4 gap-0 border hairline">
+      <section className="px-6 md:px-10 lg:px-12 py-8 md:py-12">
+        <div className="border hairline bg-hairline grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4 gap-px">
           <Metric label="Active members"    value={String(totalActive).padStart(2, "0")} hint={`of ${totalCharge} total`} />
           <Metric label="Monthly recurring" value={fmtEur(mrr?.mrr)} hint={`ARR ${fmtEur(mrr?.arr)}`} />
           <Metric label="This month"        value={fmtEur(thisMonthRow?.revenue)} hint={`${thisMonthRow?.succeeded_count ?? 0} payments`} />
-          <Metric label="Needs attention"   value={String(Number(mrr?.past_due ?? 0) + Number(mrr?.scheduled_to_cancel ?? 0))} hint={`${mrr?.past_due ?? 0} past due · ${mrr?.scheduled_to_cancel ?? 0} scheduled`} last />
+          <Metric label="Needs attention"   value={String(Number(mrr?.past_due ?? 0) + Number(mrr?.scheduled_to_cancel ?? 0))} hint={`${mrr?.past_due ?? 0} past due · ${mrr?.scheduled_to_cancel ?? 0} scheduled`} />
         </div>
       </section>
 
-      <section className="px-12 pb-16">
+      <section className="px-6 md:px-10 lg:px-12 pb-16">
         <div className="grid grid-cols-12 gap-10">
-          <div className="col-span-8">
+          <div className="col-span-12 2xl:col-span-8">
             <SectionTitle roman="II" title="Revenue, by month" />
             <RevenueChart data={months as any} />
           </div>
-          <div className="col-span-4">
+          <div className="col-span-12 2xl:col-span-4">
             <SectionTitle roman="III" title="Plan composition" />
             <div className="space-y-6 mt-2">
               {planStats.map((p: any) => {
@@ -81,11 +81,11 @@ function SectionTitle({ roman, title }: { roman: string; title: string }) {
   );
 }
 
-function Metric({ label, value, hint, last }: { label: string; value: string; hint?: string; last?: boolean }) {
+function Metric({ label, value, hint }: { label: string; value: string; hint?: string }) {
   return (
-    <div className={`py-9 px-8 ${last ? "" : "border-r hairline"}`}>
+    <div className="bg-paper py-7 md:py-9 px-6 md:px-8 min-w-0">
       <div className="text-[12px] tracking-smallcap uppercase text-muted">{label}</div>
-      <div className="number-display text-[60px] leading-[0.95] mt-3">{value}</div>
+      <div className="number-display leading-[0.95] mt-3 text-[clamp(34px,4vw,60px)] truncate">{value}</div>
       {hint && <div className="mt-3 text-[13px] text-muted">{hint}</div>}
     </div>
   );

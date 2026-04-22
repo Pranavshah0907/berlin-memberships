@@ -15,7 +15,7 @@ export default async function PaymentsPage() {
         title="All payments."
         subtitle="Every invoice, filterable by date range and status."
       />
-      <div className="px-12 py-10">
+      <div className="px-6 md:px-10 lg:px-12 py-8 md:py-10">
         <PaymentsView payments={payments} nameByCustomer={nameByCustomer} />
       </div>
     </>

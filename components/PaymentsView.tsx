@@ -3,7 +3,7 @@ import { useMemo, useState } from "react";
 import type { Payment } from "@/lib/data";
 import StatusDot from "./StatusDot";
 
-const STATUSES = ["all", "succeeded", "failed", "refunded"] as const;
+const STATUSES = ["all", "pending", "succeeded", "failed", "refunded"] as const;
 
 function fmtEur(n: number) {
   return n.toLocaleString("de-DE", { style: "currency", currency: "EUR" });
@@ -50,14 +50,15 @@ export default function PaymentsView({
     return payments
       .filter((p) => {
         const invoiceDate = p.period_start ?? p.payment_date;
+        if (!invoiceDate) return false;
         const t = new Date(invoiceDate).getTime();
         if (t < fromT || t > toT) return false;
         if (status !== "all" && p.status !== status) return false;
         return true;
       })
       .sort((a, b) => {
-        const da = new Date(a.period_start ?? a.payment_date).getTime();
-        const db = new Date(b.period_start ?? b.payment_date).getTime();
+        const da = new Date(a.period_start ?? a.payment_date ?? 0).getTime();
+        const db = new Date(b.period_start ?? b.payment_date ?? 0).getTime();
         return db - da; // newest first
       });
   }, [payments, from, to, status]);
@@ -166,7 +167,10 @@ export default function PaymentsView({
               <tr key={p.invoice_id} className="border-b hairline hover:bg-hairline/30 transition-colors">
                 <td className="py-5 pr-4 font-mono text-[14px]">
                   {fmtDate(invoiceDate)}
-                  {settledLater && (
+                  {p.status === "pending" && (
+                    <div className="text-[11px] text-muted mt-0.5">settling…</div>
+                  )}
+                  {p.status !== "pending" && settledLater && (
                     <div className="text-[11px] text-muted mt-0.5">settled {fmtDate(p.payment_date)}</div>
                   )}
                 </td>
